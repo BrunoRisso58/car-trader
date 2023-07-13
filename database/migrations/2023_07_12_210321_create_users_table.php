@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->unsignedBigInteger('permission_id');
+            $table->unsignedBigInteger('permission_id')->default(2);
             $table->foreign('permission_id')->references('id')->on('permissions');
             $table->rememberToken();
             $table->softDeletesTz();
