@@ -32,7 +32,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.register');
     }
 
     /**
@@ -40,7 +40,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return 'yep!';
     }
 
     /**

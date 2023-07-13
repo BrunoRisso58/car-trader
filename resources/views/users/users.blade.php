@@ -12,7 +12,7 @@
 
     <ul role="list" class="divide-y divide-gray-100 m-10">
         @foreach($users as $user)
-        <a href="{{route("users.show", $user->id)}}">
+        <a href="{{route("user.show", $user->id)}}">
             <li class="flex justify-between gap-x-6 py-5">
                 <div class="flex gap-x-4">
                     <img class="h-20 w-20 flex-none rounded-full bg-gray-50" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
