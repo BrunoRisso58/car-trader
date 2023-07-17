@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\UserStoreRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\Repositories\Eloquent\UserRepository;
 use Illuminate\Http\Request;
 
@@ -38,9 +40,10 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UserStoreRequest $request)
     {
-        return 'yep!';
+        $this->model->addUser($request->validated());
+        return redirect()->route('users.index');
     }
 
     /**
@@ -59,15 +62,19 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = $this->model->getOne($id);
+        return view('users.edit', [
+            "user" => $user
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UserUpdateRequest $request, string $id)
     {
-        //
+        $this->model->updateUser($request->all(), $id);
+        return redirect()->route('user.show', $id);
     }
 
     /**

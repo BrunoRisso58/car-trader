@@ -15,12 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 // users
-Route::prefix('users')
-    ->controller(UserController::class)
-    ->group(function () {
-        Route::get('/', 'index')->name('users.index');
-        Route::get('/{id}', 'show')->name('user.show');
-        Route::post('/add-user', 'store')->name('user.store');
+Route::controller(UserController::class)->group(function () {
+        Route::get('users/', 'index')->name('users.index');
+        Route::get('users/{id}', 'show')->name('user.show');
+        Route::post('users/add-user', 'store')->name('user.store');
+        Route::get('/sign-up', 'create')->name('user.signUp');
+        Route::get('users/edit/{id}', 'edit')->name('user.edit');
+        Route::put('users/update/{id}', 'update')->name('user.update');
     }
 );
-Route::get('/sign-up', [UserController::class, 'create'])->name('user.signUp');

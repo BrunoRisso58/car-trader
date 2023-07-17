@@ -4,27 +4,25 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @vite('resources/css/app.css')
-    <title>Sign Up</title>
+    <title>Edit user</title>
 </head>
 <body class="h-full">
     
   <div>
-    <h1 class="text-4xl m-10 inline-block">Sign Up</h1>
+    <h1 class="text-4xl m-10 inline-block">Edit</h1>
     <a href="{{route('users.index')}}">
         <button class="text-right bg-indigo-600 py-2 px-4 rounded-lg text-white font-semibold">Users</button>
     </a>
   </div>
 
     <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-        <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-          <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Join Car Trader</h2>
-        </div>
       
         <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form class="space-y-6" action="{{route('user.store')}}" method="post" enctype="multipart/form-data">
+          <form class="space-y-6" action="{{route('user.update', $user->id)}}" method="post" enctype="multipart/form-data">
             @csrf
+            @method('put')
             <div>
-              <img class="mx-auto h-32 w-auto" src="{{asset('storage/user_icon.png')}}" alt="User Icon">
+              <img class="mx-auto h-44 w-44 object-cover flex-none rounded-full bg-gray-50" src="{{asset('storage/'.$user->image->image)}}" alt="User Icon">
             </div>
             <div class="flex justify-center">
               <input id="image" name="image" type="file" accept=".jpeg, .jpg, .png" class="text-center">
@@ -38,7 +36,7 @@
             <div>
               <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Full name</label>
               <div class="mt-2">
-                <input id="name" name="name" type="text" autocomplete="name" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                <input id="name" name="name" type="text" value="{{$user->name}}" autocomplete="name" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
               </div>
               @error('name')
                 <span class="text-red-500 text-xs italic" role="alert">
@@ -50,7 +48,7 @@
             <div>
               <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
               <div class="mt-2">
-                <input id="email" name="email" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                <input id="email" name="email" type="email" value="{{$user->email}}" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
               </div>
               @error('email')
                 <span class="text-red-500 text-xs italic" role="alert">
@@ -61,15 +59,15 @@
       
             <div>
               <div class="flex items-center justify-between">
-                <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+                <label for="password" class="block text-sm font-medium leading-6 text-gray-900"> New password</label>
               </div>
               <div class="mt-2">
                 <input id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
               </div>
               @error('password')
-                  <span class="text-red-500 text-xs italic" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
+                <span class="text-red-500 text-xs italic" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
               @enderror
             </div>
 
@@ -83,14 +81,10 @@
             </div>
       
             <div>
-              <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign up</button>
+              <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
             </div>
           </form>
       
-          <p class="mt-10 text-center text-sm text-gray-500">
-            Already registered?
-            <a href="#" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Log in</a>
-          </p>
         </div>
     </div>
 
