@@ -22,7 +22,7 @@
             @csrf
             @method('put')
             <div>
-              <img class="mx-auto h-44 w-44 object-cover flex-none rounded-full bg-gray-50" src="{{asset('storage/'.$user->image->image)}}" alt="User Icon">
+              <img class="mx-auto h-44 w-44 object-cover flex-none rounded-full bg-gray-50" src="{{asset('storage/'.$user->image->path)}}" alt="User Icon">
             </div>
             <div class="flex justify-center">
               <input id="image" name="image" type="file" accept=".jpeg, .jpg, .png" class="text-center">

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CarController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,11 +17,16 @@ use Illuminate\Support\Facades\Route;
 
 // users
 Route::controller(UserController::class)->group(function () {
-        Route::get('users/', 'index')->name('users.index');
-        Route::get('users/{id}', 'show')->name('user.show');
-        Route::post('users/add-user', 'store')->name('user.store');
-        Route::get('/sign-up', 'create')->name('user.signUp');
-        Route::get('users/edit/{id}', 'edit')->name('user.edit');
-        Route::put('users/update/{id}', 'update')->name('user.update');
-    }
-);
+    Route::get('users/', 'index')->name('users.index');
+    Route::get('users/{id}', 'show')->name('user.show');
+    Route::post('users/add-user', 'store')->name('user.store');
+    Route::get('/sign-up', 'create')->name('user.signUp');
+    Route::get('users/edit/{id}', 'edit')->name('user.edit');
+    Route::put('users/update/{id}', 'update')->name('user.update');
+});
+
+// cars
+Route::controller(CarController::class)->group(function () {
+    Route::get('cars/', 'index')->name('cars.index');
+    Route::get('cars/add', 'create')->name('cars.create');
+});

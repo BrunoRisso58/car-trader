@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('images', function (Blueprint $table) {
+        Schema::create('user_images', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->string('image');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('path');
             $table->softDeletes();
             $table->timestamps();
         });

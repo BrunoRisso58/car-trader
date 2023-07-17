@@ -2,16 +2,13 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
-class Image extends Authenticatable
+class Car extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -19,11 +16,17 @@ class Image extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'brand',
+        'model',
+        'year',
         'user_id',
-        'image',
     ];
 
     public function user() {
         return $this->belongsTo(User::class);
+    }
+
+    public function images() {
+        return $this->hasMany(CarImage::class);
     }
 }

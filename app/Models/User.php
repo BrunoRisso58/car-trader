@@ -45,6 +45,10 @@ class User extends Authenticatable
     ];
 
     public function image() {
-        return $this->hasOne(Image::class);
+        return $this->hasOne(UserImage::class);
+    }
+
+    public function cars() {
+        return $this->hasMany(Car::class);
     }
 }
