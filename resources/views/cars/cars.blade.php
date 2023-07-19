@@ -10,13 +10,13 @@
 
     <div>
         <h1 class="text-4xl m-10 inline-block">All cars</h1>
-        <a href="{{route('cars.create')}}">
+        <a href="{{route('car.create')}}">
             <button class="text-right bg-indigo-600 py-2 px-4 rounded-lg text-white font-semibold">Add car</button>
         </a>
     </div>
 
     <div class="bg-white">
-        <div class="grid grid-cols-3 gap-10 mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+        <div class="grid grid-cols-4 gap-10 mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
 
           @foreach($cars as $car)
           <div class="mt-6 grid">

@@ -28,5 +28,6 @@ Route::controller(UserController::class)->group(function () {
 // cars
 Route::controller(CarController::class)->group(function () {
     Route::get('cars/', 'index')->name('cars.index');
-    Route::get('cars/add', 'create')->name('cars.create');
+    Route::get('cars/add', 'create')->name('car.create');
+    Route::post('cars/store', 'store')->name('car.store');
 });
