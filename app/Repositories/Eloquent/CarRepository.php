@@ -5,6 +5,7 @@ namespace App\Repositories\Eloquent;
 use ErrorException;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Repositories\Contracts\CarRepositoryInterface;
@@ -20,7 +21,7 @@ class CarRepository extends AbstractRepository implements CarRepositoryInterface
         try {
             $attributes = $request->only('brand', 'model', 'color', 'price', 'description', 'features', 'image');
             $attributes['year'] = substr($attributes['model'], 0, 4);
-            $attributes['user_id'] = 1;
+            $attributes['user_id'] = Auth::user()->id;
 
             $car = $this->model->create($attributes);
 
