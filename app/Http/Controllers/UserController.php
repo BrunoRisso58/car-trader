@@ -6,6 +6,7 @@ use App\Http\Requests\User\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Repositories\Eloquent\UserRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -75,6 +76,31 @@ class UserController extends Controller
     {
         $this->model->updateUser($request->all(), $id);
         return redirect()->route('user.show', $id);
+    }
+
+    /**
+     * Shows the login form
+     */
+    public function loginForm()
+    {
+        if (Auth::check())
+            return redirect()->route('cars.index');
+            
+        return view('users.loginForm');
+    }
+
+    /**
+     * Authenticate user
+     */
+    public function login(Request $request) {
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended(route('cars.index'));
+        }
+
+        return redirect()->route('login');
     }
 
     /**

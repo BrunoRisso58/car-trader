@@ -22,7 +22,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
             if ($data['image']) {
                 $path = $data['image']->store(Str::slug($data['name']) . '-' . Str::slug(now()));
                 $user->image()->create([
-                    'image' => $path
+                    'path' => $path
                 ]);
             }
 

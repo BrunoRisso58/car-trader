@@ -16,13 +16,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 // users
-Route::controller(UserController::class)->group(function () {
+Route::controller(UserController::class)->middleware(['auth', 'permission'])->group(function () {
     Route::get('users/', 'index')->name('users.index');
     Route::get('users/{id}', 'show')->name('user.show');
-    Route::post('users/add-user', 'store')->name('user.store');
-    Route::get('/sign-up', 'create')->name('user.signUp');
     Route::get('users/edit/{id}', 'edit')->name('user.edit');
     Route::put('users/update/{id}', 'update')->name('user.update');
+});
+
+// sign up / sign in
+Route::controller(UserController::class)->group(function () {
+    Route::get('/sign-up', 'create')->name('signup');
+    Route::post('users/add-user', 'store')->name('user.store');
+    Route::get('login/', 'loginForm')->name('loginForm');
+    Route::post('login/', 'login')->name('login');
 });
 
 // cars
