@@ -19,7 +19,11 @@ class Car extends Model
         'brand',
         'model',
         'year',
-        'user_id',
+        'color',
+        'features',
+        'description',
+        'price',
+        'user_id'
     ];
 
     public function user() {

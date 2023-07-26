@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('model');
             $table->integer('year');
             $table->string('color');
-            $table->string('benefits');
+            $table->string('features');
             $table->string('description');
             $table->unsignedFloat('price');
             $table->unsignedBigInteger('user_id');

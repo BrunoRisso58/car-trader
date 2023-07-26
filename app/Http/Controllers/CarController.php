@@ -37,7 +37,8 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
+        $this->model->addCar($request);
+        return redirect()->route('cars.index');
     }
 
     /**
