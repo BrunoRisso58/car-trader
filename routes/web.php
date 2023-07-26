@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// users
-Route::controller(UserController::class)->middleware(['auth', 'permission'])->group(function () {
+// users (only permission 1)
+Route::controller(UserController::class)->middleware(['auth', 'UserPagesPermission'])->group(function () {
     Route::get('users/', 'index')->name('users.index');
     Route::get('users/{id}', 'show')->name('user.show');
     Route::get('users/edit/{id}', 'edit')->name('user.edit');

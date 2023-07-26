@@ -35,6 +35,9 @@ class UserController extends Controller
      */
     public function create()
     {
+        if (Auth::check() && Auth::user()->permission_id != 1)
+            return redirect()->route('cars.index');
+        
         return view('users.register');
     }
 
