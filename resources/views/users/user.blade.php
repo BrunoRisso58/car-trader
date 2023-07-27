@@ -8,6 +8,8 @@
 </head>
 <body>
 
+    @include('components.navbar')
+
     <div>
         <h1 class="text-4xl m-10 inline-block">User</h1>
         <a href="{{route('user.edit', $user->id)}}">

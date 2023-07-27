@@ -10,9 +10,11 @@
     
   <div>
     <h1 class="text-4xl m-10 inline-block">Sign Up</h1>
-    <a href="{{route('users.index')}}">
-        <button class="text-right bg-indigo-600 py-2 px-4 rounded-lg text-white font-semibold">Users</button>
-    </a>
+    @if(Auth::check())
+      <a href="{{route('users.index')}}">
+          <button class="text-right bg-indigo-600 py-2 px-4 rounded-lg text-white font-semibold">Users</button>
+      </a>
+    @endif
   </div>
 
     <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
@@ -89,7 +91,7 @@
       
           <p class="mt-10 text-center text-sm text-gray-500">
             Already registered?
-            <a href="#" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Log in</a>
+            <a href="{{route('login')}}" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Log in</a>
           </p>
         </div>
     </div>

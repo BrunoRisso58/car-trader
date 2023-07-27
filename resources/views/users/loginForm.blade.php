@@ -58,7 +58,7 @@
       
           <p class="mt-10 text-center text-sm text-gray-500">
             Don't have an account?
-            <a href="#" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Sign Up for free</a>
+            <a href="{{route('signup')}}" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Sign Up for free</a>
           </p>
         </div>
       </div>

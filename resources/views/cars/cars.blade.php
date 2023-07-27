@@ -10,13 +10,6 @@
 
   @include('components.navbar')
 
-  <div>
-      <h1 class="text-4xl m-10 inline-block">All cars</h1>
-      <a href="{{route('car.create')}}">
-          <button class="text-right bg-indigo-600 py-2 px-4 rounded-lg text-white font-semibold">Add car</button>
-      </a>
-  </div>
-
   <div class="bg-white">
     <div class="grid grid-cols-4 gap-10 mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
 
@@ -24,7 +17,7 @@
       <div class="mt-6 grid">
         <div class="group relative">
           <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-            <img src="{{asset('storage/'.$car->images[0]->path)}}" alt="Car image" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+            <img src="{{ isset($car->images[0]) ? asset('storage/'.$car->images[0]->path) : asset('storage/car_icon.png') }}" alt="Car image" class="h-full w-full object-cover object-center lg:h-full lg:w-full">
           </div>
           <div class="mt-4 flex justify-between">
             <div>

@@ -7,6 +7,8 @@
     <title>Edit user</title>
 </head>
 <body class="h-full">
+
+  @include('components.navbar')
     
   <div>
     <h1 class="text-4xl m-10 inline-block">Edit</h1>

@@ -8,10 +8,12 @@
 </head>
 <body>
 
+    @include('components.navbar')
+
     <div>
         <h1 class="text-4xl m-10 inline-block">Users</h1>
         <a href="{{route('signup')}}">
-            <button class="text-right bg-indigo-600 py-2 px-4 rounded-lg text-white font-semibold">Sign Up</button>
+            <button class="text-right bg-indigo-600 py-2 px-4 rounded-lg text-white font-semibold">Create user</button>
         </a>
     </div>
 

@@ -5,23 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @vite('resources/css/app.css')
     <title>Cars</title>
-
 </head>
 <body>
 
-    <div>
-        <h1 class="text-4xl m-10 inline-block">Add car</h1>
-        <a href="{{route('cars.index')}}">
-            <button class="text-right bg-indigo-600 py-2 px-4 rounded-lg text-white font-semibold">All cars</button>
-        </a>
-    </div>
+    @include('components.navbar')
 
     <form action="{{route('car.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
 
-        <div class="space-y-12 m-10">
+        <div class="space-y-12 mx-auto max-w-7xl">
         
-            <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+            <div class="m-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div class="sm:col-span-3 inline-block">
                     <label for="brand" class="block text-sm font-medium leading-6 text-gray-900">Brand *</label>
                     <div class="mt-2">
@@ -53,7 +47,7 @@
                             <p class="flex items-center w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/p" fill="none" viewBox="0 0 20 20">$</p>
                         </div>
                         <input type="number" name="price" id="price" class="block w-2/3 rounded-md border-0 px-8 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" required>                    </div>
-                </div>    
+                </div>
                 
                 <div class="col-span-full">
                     <label for="features" class="block text-sm font-medium leading-6 text-gray-900">Features</label>
@@ -132,7 +126,7 @@
                 
             </div>
     
-        <div class="mt-6 flex items-center justify-end gap-x-6">
+        <div class="mt-6 px-12 pb-12 flex items-center justify-end gap-x-6">
             <a href="{{route('cars.index')}}">
                 <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button>
             </a>
