@@ -45,7 +45,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
             $user->save();
     
             $user->image()->update([
-                'image' => $path
+                'path' => $path
             ]);
 
             DB::commit();
