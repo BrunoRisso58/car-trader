@@ -58,7 +58,9 @@
             @else
                 <div class="relative ml-3">
                     <div>
-                        <a href="{{route('login')}}" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Log In</a>
+                      <a href="{{route('signup')}}" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Sign Up</a>
+                      <span href="{{route('signup')}}" class="text-gray-300 px-3 py-2 text-sm font-medium">|</span>
+                      <a href="{{route('login')}}" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Log In</a>
                     </div>
                 </div>
             @endif
