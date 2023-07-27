@@ -16,11 +16,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 // users (only permission 1)
-Route::controller(UserController::class)->middleware(['auth', 'UserPagesPermission'])->group(function () {
-    Route::get('users/', 'index')->name('users.index');
-    Route::get('users/{id}', 'show')->name('user.show');
-    Route::get('users/edit/{id}', 'edit')->name('user.edit');
-    Route::put('users/update/{id}', 'update')->name('user.update');
+Route::controller(UserController::class)->middleware('auth')->group(function () {
+    Route::get('users/', 'index')->middleware('UserPagesPermission')->name('users.index');
+    Route::get('users/{id}', 'show')->middleware('VerifyLoggedUser')->name('user.show');
+    Route::get('users/edit/{id}', 'edit')->middleware('VerifyLoggedUser')->name('user.edit');
+    Route::put('users/update/{id}', 'update')->middleware('VerifyLoggedUser')->name('user.update');
 });
 
 // sign up / sign in
