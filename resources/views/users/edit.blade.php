@@ -12,9 +12,11 @@
     
   <div>
     <h1 class="text-4xl m-10 inline-block">Edit</h1>
-    <a href="{{route('users.index')}}">
-        <button class="text-right bg-indigo-600 py-2 px-4 rounded-lg text-white font-semibold">Users</button>
-    </a>
+    @if(Auth::user()->permission_id == 1)
+      <a href="{{route('users.index')}}">
+          <button class="text-right bg-indigo-600 py-2 px-4 rounded-lg text-white font-semibold">Users</button>
+      </a>
+    @endif
   </div>
 
     <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
