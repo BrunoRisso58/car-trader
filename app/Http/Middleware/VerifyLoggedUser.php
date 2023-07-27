@@ -16,7 +16,7 @@ class VerifyLoggedUser
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::user()->id == $request->id)
+        if (Auth::user()->id == $request->id || Auth::user()->permission_id == 1)
             return $next($request);
 
         return redirect()->route('cars.index');
