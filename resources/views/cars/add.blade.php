@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @vite('resources/css/app.css')
-    <title>Cars</title>
+    <title>List a car!</title>
 </head>
 <body>
 
@@ -123,14 +123,17 @@
                     </div>
                     <p class="mt-3 text-sm leading-6 text-gray-600" id="photo-preview-text">This is the first photo that will appear.</p>
                 </div> 
-                
+
+                <input type="hidden" name="features" id="features" value="">
             </div>
+
+        </div>
     
         <div class="mt-6 px-12 pb-12 flex items-center justify-end gap-x-6">
             <a href="{{route('cars.index')}}">
                 <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button>
             </a>
-            <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" onclick="submitForm(event)">Save</button>
+            <button onclick="submitForm(event)" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
         </div>
 
     </form>
@@ -251,12 +254,9 @@
             
             // Add a hidden input field to the form with the grouped features value
             const form = document.querySelector('form');
-            const groupedFeaturesInput = document.createElement('input');
-            groupedFeaturesInput.setAttribute('type', 'hidden');
-            groupedFeaturesInput.setAttribute('name', 'features');
-            groupedFeaturesInput.setAttribute('value', groupedFeatures);
-            form.appendChild(groupedFeaturesInput);
-            
+            const groupedFeaturesInput = document.getElementById('features');
+            groupedFeaturesInput.value = selectedValues;
+
             const requiredFields = document.querySelectorAll('[required]');
 
             let isFormValid = true;

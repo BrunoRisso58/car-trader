@@ -10,7 +10,7 @@
 
   @include('components.navbar')
     
-  <div>
+  <div class="mx-auto max-w-7xl">
     <h1 class="text-4xl m-10 inline-block">Edit</h1>
     @if(Auth::user()->permission_id == 1)
       <a href="{{route('users.index')}}">
