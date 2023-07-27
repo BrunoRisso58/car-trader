@@ -29,11 +29,12 @@ Route::controller(UserController::class)->group(function () {
     Route::post('users/add-user', 'store')->name('user.store');
     Route::get('login/', 'loginForm')->name('loginForm');
     Route::post('login/', 'login')->name('login');
+    Route::post('logout/', 'logout')->name('logout');
 });
 
 // cars
 Route::controller(CarController::class)->group(function () {
     Route::get('cars/', 'index')->name('cars.index');
-    Route::get('cars/add', 'create')->name('car.create');
-    Route::post('cars/store', 'store')->name('car.store');
+    Route::get('cars/add', 'create')->middleware('auth')->name('car.create');
+    Route::post('cars/store', 'store')->middleware('auth')->name('car.store');
 });

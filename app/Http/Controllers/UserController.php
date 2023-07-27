@@ -100,10 +100,21 @@ class UserController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended(route('cars.index'));
+            return redirect()->route('cars.index');
         }
 
         return redirect()->route('login');
+    }
+
+    /**
+     * Unauthenticate user
+     */
+    public function logout(Request $request) {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerate();
+
+        return redirect()->route('cars.index');
     }
 
     /**
