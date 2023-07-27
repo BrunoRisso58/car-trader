@@ -34,7 +34,12 @@ Route::controller(UserController::class)->group(function () {
 
 // cars
 Route::controller(CarController::class)->group(function () {
-    Route::get('cars/', 'index')->name('cars.index');
+    Route::get('/', 'index')->name('cars.index');
     Route::get('cars/add', 'create')->middleware('auth')->name('car.create');
     Route::post('cars/store', 'store')->middleware('auth')->name('car.store');
+});
+
+// redirects to / when route does not exist
+Route::fallback(function () {
+    return redirect()->route('cars.index');
 });
