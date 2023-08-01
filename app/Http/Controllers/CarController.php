@@ -47,7 +47,10 @@ class CarController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $car = $this->model->getOne($id);
+        return view('cars.car', [
+            "car" => $car
+        ]);
     }
 
     /**

@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="{{asset('storage/car_favicon.png')}}">
     @vite('resources/css/app.css')
     <title>Sign Up</title>
 </head>
@@ -11,7 +12,7 @@
   <div>
     @if(Auth::check())
       <a href="{{route('users.index')}}">
-          <button class="text-right bg-indigo-600 py-2 px-4 rounded-lg text-white font-semibold">Users</button>
+          <button class="text-right bg-indigo-600 m-10 py-2 px-4 rounded-lg text-white font-semibold">Users</button>
       </a>
     @endif
   </div>
@@ -54,6 +55,18 @@
                 <input id="email" name="email" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
               </div>
               @error('email')
+                <span class="text-red-500 text-xs italic" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+              @enderror
+            </div>
+
+            <div>
+              <label for="cellphone" class="block text-sm font-medium leading-6 text-gray-900">Phone number:</label>
+              <div class="mt-2">
+                <input id="cellphone" name="cellphone" type="tel" autocomplete="tel" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+              </div>
+              @error('cellphone')
                 <span class="text-red-500 text-xs italic" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>

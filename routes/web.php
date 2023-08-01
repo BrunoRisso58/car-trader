@@ -37,6 +37,7 @@ Route::controller(CarController::class)->group(function () {
     Route::get('/', 'index')->name('cars.index');
     Route::get('cars/add', 'create')->middleware('auth')->name('car.create');
     Route::post('cars/store', 'store')->middleware('auth')->name('car.store');
+    Route::get('car/{id}', 'show')->name('car.show');
 });
 
 // redirects to / when route does not exist

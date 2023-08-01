@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="{{asset('storage/car_favicon.png')}}">
     @vite('resources/css/app.css')
     <title>Users</title>
 </head>
@@ -22,6 +23,7 @@
             <img class="h-44 w-44 object-cover flex-none rounded-full bg-gray-50" src="{{asset('storage/'.$user->image->path)}}" alt="Profile picture">
             <h1 class="text-2xl font-bold p-5">{{$user->name}}</h1>
             <p class="text-lg text-gray-600">{{$user->email}}</p>
+            <p class="text-lg text-gray-600">{{$user->cellphone}}</p>
         </div>
     </div>
 

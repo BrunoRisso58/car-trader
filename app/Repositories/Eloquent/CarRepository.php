@@ -39,4 +39,11 @@ class CarRepository extends AbstractRepository implements CarRepositoryInterface
         }
     }
 
+    public function getOne($id) {
+        $car = $this->model->findOrFail($id);
+        $car['features'] = explode(',', $car['features']);
+
+        return $car;
+    }
+
 }
