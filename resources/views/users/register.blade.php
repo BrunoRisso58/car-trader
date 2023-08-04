@@ -29,7 +29,7 @@
               <img class="mx-auto h-32 w-auto" src="{{asset('storage/user_icon.png')}}" alt="User Icon">
             </div>
             <div class="flex justify-center">
-              <input id="image" name="image" type="file" accept=".jpeg, .jpg, .png" class="text-center" onchange="previewImage(event)">
+              <input id="image" name="image" type="file" accept=".jpeg, .jpg, .png" class="text-center" onchange="previewImage(event, 32, 'full')">
             </div>
             @error('image')
               <span class="text-red-500 text-xs italic" role="alert">
@@ -108,29 +108,7 @@
         </div>
     </div>
 
-    <script>
-
-      function previewImage(event) {
-            const input = event.target;
-            const imagePreview = document.getElementById("image-preview");
-
-            for (const child of imagePreview.children) {
-                child.remove();
-            }
-
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    let img = document.createElement('img');
-                    img.src = e.target.result;
-                    img.classList.add('mx-auto', 'h-32', 'w-32', 'object-cover', 'text-gray-300', 'm-4', 'rounded-full');
-                    imagePreview.append(img);
-                };
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-    </script>
+    <script src="{{ asset('js/previewImage.js') }}"></script>
 
 </body>
 </html>

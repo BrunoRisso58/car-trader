@@ -120,7 +120,7 @@
                         </svg>
                     </div>
                     <div class="flex justify-center">
-                        <input id="image" name="image" type="file" accept=".jpeg, .jpg, .png" class="text-center" onchange="previewImage(event)" required>
+                        <input id="image" name="image" type="file" accept=".jpeg, .jpg, .png" class="text-center" onchange="previewImage(event, 32, 'md')" required>
                     </div>
                     <p class="mt-3 text-sm leading-6 text-gray-600" id="photo-preview-text">This is the first photo that will appear.</p>
                 </div> 
@@ -139,144 +139,12 @@
 
     </form>
 
-    <script>
+    @include('components.footer')
 
-        const selectBrand = document.getElementById('brand');
-
-        let brandsRequest = async function () {
-            const url = 'https://car-data.p.rapidapi.com/cars/makes';
-            const options = {
-                method: 'GET',
-                headers: {
-                    'X-RapidAPI-Key': '69429c6d52mshbf884f8d222d712p12bb0djsne05d7c0b5898',
-                    'X-RapidAPI-Host': 'car-data.p.rapidapi.com'
-                }
-            };
-
-            fetch(url, options)
-                .then(
-                    response => response.json()
-                )
-                .then(data => {
-                    data.forEach(element => {
-                        let option = document.createElement('option');
-                        option.id = element.split(' ').join('');
-                        option.classList.add('brand');
-                        option.value = element;
-                        option.textContent = element;
-
-                        selectBrand.appendChild(option);
-                    });
-                })
-                .catch(error => {
-                    console.log('Error: ', error);
-                })
-        }
-
-        brandsRequest();
-
-        selectBrand.onchange = () => {
-            modelsRequest(selectBrand.value);
-        };
-
-        const selectModel = document.getElementById('model');
-
-        let modelsRequest = async function (make) {
-            const optionModel = document.getElementsByClassName('model');
-
-            if (optionModel) {
-                Array.from(optionModel).forEach(element => {
-                    element.remove();
-                })
-            }
-
-            const url = `https://car-data.p.rapidapi.com/cars?limit=50&page=0&make=${make}`;
-            const options = {
-                method: 'GET',
-                headers: {
-                    'X-RapidAPI-Key': '69429c6d52mshbf884f8d222d712p12bb0djsne05d7c0b5898',
-                    'X-RapidAPI-Host': 'car-data.p.rapidapi.com'
-                }
-            };
-
-            fetch(url, options)
-                .then(
-                    response => response.json()
-                )
-                .then(data => {
-                    data.forEach(element => {
-                        let option = document.createElement('option');
-                        let model = `${element.year} ${element.make} ${element.model} ${element.type}`;
-                        option.id = model.split(' ').join('-');
-                        option.classList.add('model');
-                        option.value = model;
-                        option.textContent = model;
-
-                        selectModel.appendChild(option);
-                    });
-                })
-                .catch(error => {
-                    console.log('Error: ', error);
-                })
-        }
-
-        function previewImage(event) {
-            const input = event.target;
-            const imagePreview = document.getElementById("image-preview");
-
-            for (const child of imagePreview.children) {
-                child.remove();
-            }
-
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    let img = document.createElement('img');
-                    img.src = e.target.result;
-                    img.classList.add('mx-auto', 'h-32', 'w-32', 'object-cover', 'text-gray-300', 'm-4', 'rounded-md');
-                    imagePreview.append(img);
-                };
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        function submitForm() {
-            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-            
-            const selectedValues = [];
-            
-            checkboxes.forEach(function(checkbox) {
-                if (checkbox.checked) {
-                    selectedValues.push(checkbox.value);
-                }
-            });
-            
-            const groupedFeatures = selectedValues.join(',');
-            
-            // Add a hidden input field to the form with the grouped features value
-            const form = document.querySelector('form');
-            const groupedFeaturesInput = document.getElementById('features');
-            groupedFeaturesInput.value = selectedValues;
-
-            const requiredFields = document.querySelectorAll('[required]');
-
-            let isFormValid = true;
-            requiredFields.forEach(field => {
-                if (!field.value.trim()) {
-                    isFormValid = false;
-                }
-            })
-
-            if (!isFormValid) {
-                event.preventDefault();
-                alert('Please fill out all required fields.');
-            } else {
-                form.submit();
-            }
-
-        }
-
-    </script>
+    <script src="{{ asset('js/brandsRequest.js') }}"></script>
+    <script src="{{ asset('js/modelsRequest.js') }}"></script>
+    <script src="{{ asset('js/previewImage.js') }}"></script>
+    <script src="{{ asset('js/submitCarForm.js') }}"></script>
 
 </body>
 </html>
