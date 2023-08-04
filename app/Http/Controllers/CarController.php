@@ -54,6 +54,17 @@ class CarController extends Controller
     }
 
     /**
+     * Display a listing of the car ads that were created by the logged user.
+     */
+    public function myList()
+    {
+        $cars = $this->model->getCarsByLoggedUser();
+        return view('cars.myList', [
+            "cars" => $cars
+        ]);
+    }
+
+    /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)

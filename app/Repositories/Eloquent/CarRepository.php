@@ -46,4 +46,9 @@ class CarRepository extends AbstractRepository implements CarRepositoryInterface
         return $car;
     }
 
+    public function getCarsByLoggedUser() {
+        $cars = $this->model->where('user_id', '=', Auth::user()->id)->get();
+        return $cars;
+    }
+
 }
