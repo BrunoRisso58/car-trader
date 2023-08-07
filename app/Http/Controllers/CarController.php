@@ -31,8 +31,10 @@ class CarController extends Controller
      */
     public function create()
     {
-        // $features = 
-        return view('cars.add');
+        $features = Feature::all();
+        return view('cars.add', [
+            "features" => $features
+        ]);
     }
 
     /**
