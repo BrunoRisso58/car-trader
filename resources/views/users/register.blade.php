@@ -40,7 +40,7 @@
             <div>
               <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Full name</label>
               <div class="mt-2">
-                <input id="name" name="name" type="text" autocomplete="name" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                <input id="name" name="name" value="{{old('name')}}" type="text" autocomplete="name" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
               </div>
               @error('name')
                 <span class="text-red-500 text-xs italic" role="alert">
@@ -52,7 +52,7 @@
             <div>
               <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
               <div class="mt-2">
-                <input id="email" name="email" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                <input id="email" name="email" type="email" value="{{old('email')}}" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
               </div>
               @error('email')
                 <span class="text-red-500 text-xs italic" role="alert">
@@ -62,9 +62,9 @@
             </div>
 
             <div>
-              <label for="cellphone" class="block text-sm font-medium leading-6 text-gray-900">Phone number:</label>
+              <label for="cellphone" class="block text-sm font-medium leading-6 text-gray-900">Phone (use only numbers):</label>
               <div class="mt-2">
-                <input id="cellphone" name="cellphone" type="tel" autocomplete="tel" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                <input id="cellphone" name="cellphone" value="{{old('cellphone')}}" placeholder="e.g.: 55 19 999999999" type="tel" autocomplete="tel" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
               </div>
               @error('cellphone')
                 <span class="text-red-500 text-xs italic" role="alert">

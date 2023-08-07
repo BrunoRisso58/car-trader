@@ -22,9 +22,10 @@ class UserStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image' => 'required|file|mimetypes:image/png,image/jpg,image/jpeg|image:jpg,png,jpeg',
+            'image' => 'file|mimetypes:image/png,image/jpg,image/jpeg|image:jpg,png,jpeg',
             'name' => 'required|string',
             'email' => 'required|unique:users,email|email',
+            'cellphone' => 'required',
             'password' => 'required|string|confirmed|min:8|max:16'
         ];
     }
