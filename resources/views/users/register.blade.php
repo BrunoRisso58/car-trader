@@ -64,7 +64,7 @@
             <div>
               <label for="cellphone" class="block text-sm font-medium leading-6 text-gray-900">Phone (use only numbers):</label>
               <div class="mt-2">
-                <input id="cellphone" name="cellphone" value="{{old('cellphone')}}" placeholder="e.g.: 55 19 999999999" type="tel" autocomplete="tel" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                <input id="cellphone" name="cellphone" value="{{old('cellphone')}}" oninput="validateCellphone(this)" placeholder="e.g.: 55 19 999999999" type="tel" autocomplete="tel" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
               </div>
               @error('cellphone')
                 <span class="text-red-500 text-xs italic" role="alert">
@@ -109,6 +109,7 @@
     </div>
 
     <script src="{{ asset('js/previewImage.js') }}"></script>
+    <script src="{{ asset('js/validateCellphone.js') }}"></script>
 
 </body>
 </html>
