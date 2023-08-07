@@ -21,6 +21,7 @@ class CarRepository extends AbstractRepository implements CarRepositoryInterface
 
         try {
             $attributes = $request->only('brand', 'model', 'color', 'price', 'description', 'features', 'image');
+            $attributes['price'] = str_replace(',', '', $attributes['price']);
             $attributes['year'] = substr($attributes['model'], 0, 4);
             $attributes['user_id'] = Auth::user()->id;
 

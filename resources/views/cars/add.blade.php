@@ -54,54 +54,17 @@
                 <div class="col-span-full">
                     <label for="features" class="block text-sm font-medium leading-6 text-gray-900">Features</label>
                     <div class="mt-2 grid grid-cols-3">
+                        @foreach($features as $feature)
                         <div>
-                            <input id="air-conditioning" name="air-conditioning" value="Air conditioning" type="checkbox" class="m-4">
-                            <label for="air-conditioning">Air conditioning</label>
+                            <input id="{{$feature->name}}" 
+                                   name="{{$feature->name}}" 
+                                   value="{{$feature->value}}" 
+                                   type="checkbox" 
+                                   class="m-4"
+                            >
+                            <label for="{{$feature->name}}">{{ $feature->value }}</label>
                         </div>
-                        <div>
-                            <input id="heating-system" name="heating-system" value="Heating system" type="checkbox" class="m-4">
-                            <label for="heating-system">Heating system</label>
-                        </div>
-                        <div>
-                            <input id="power-windows" name="power-windows" value="Power windows" type="checkbox" class="m-4">
-                            <label for="power-windows">Power windows</label>
-                        </div>
-                        <div>
-                            <input id="power-mirrors" name="power-mirrors" value="Power mirrors" type="checkbox" class="m-4">
-                            <label for="power-mirrors">Power mirrors</label>
-                        </div>
-                        <div>
-                            <input id="central-locking" name="central-locking" value="Central locking" type="checkbox" class="m-4">
-                            <label for="central-locking">Central locking</label>
-                        </div>
-                        <div>
-                            <input id="sound-system" name="sound-system" value="Sound system" type="checkbox" class="m-4">
-                            <label for="sound-system">Sound system</label>
-                        </div>
-                        <div>
-                            <input id="abs" name="abs" value="ABS" type="checkbox" class="m-4">
-                            <label for="abs">ABS</label>
-                        </div>
-                        <div>
-                            <input id="traction-control" name="traction-control" value="Traction control" type="checkbox" class="m-4">
-                            <label for="traction-control">Traction control</label>
-                        </div>
-                        <div>
-                            <input id="rear-view" name="rear-view" value="Rear-view cameras" type="checkbox" class="m-4">
-                            <label for="rear-view">Rear-view cameras</label>
-                        </div>
-                        <div>
-                            <input id="cruise-control" name="cruise-control" value="Cruise control" type="checkbox" class="m-4">
-                            <label for="cruise-control">Cruise control</label>
-                        </div>
-                        <div>
-                            <input id="gps-navigation" name="gps-navigation" value="GPS navigation" type="checkbox" class="m-4">
-                            <label for="gps-navigation">GPS navigation</label>
-                        </div>
-                        <div>
-                            <input id="keyless-entry" name="keyless-entry" value="Keyless entry/start" type="checkbox" class="m-4">
-                            <label for="keyless-entry">Keyless entry/start</label>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
         

@@ -48,7 +48,7 @@
                         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                             <p class="flex items-center w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/p" fill="none" viewBox="0 0 20 20">$</p>
                         </div>
-                        <input type="number" name="price" id="price" value="{{$car->price}}" class="block w-2/3 rounded-md border-0 px-8 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" required>                    </div>
+                        <input type="text" name="price" id="price" value="{{$car->price}}" oninput="validatePrice(this)" class="block w-2/3 rounded-md border-0 px-8 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" required>                    </div>
                 </div>
                 
                 <div class="col-span-full">
@@ -110,6 +110,7 @@
     <script src="{{ asset('js/modelsRequest.js') }}"></script>
     <script src="{{ asset('js/previewImage.js') }}"></script>
     <script src="{{ asset('js/submitCarForm.js') }}"></script>
+    <script src="{{ asset('js/validatePrice.js') }}"></script>
 
 </body>
 </html>

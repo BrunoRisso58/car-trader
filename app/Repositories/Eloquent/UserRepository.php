@@ -29,7 +29,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
             DB::commit();
         } catch (Exception $e) {
             DB::rollback();
-            return $e->getMessage();
+            throw new Exception($e->getMessage());
         }
     }
 
@@ -51,7 +51,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
             DB::commit();
         } catch (Exception $e) {
             DB::rollback();
-            return $e->getMessage();
+            throw new Exception($e->getMessage());
         }
     }
 
