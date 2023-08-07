@@ -11,7 +11,7 @@ function previewImage(event, measure, roundOption) {
         reader.onload = function (e) {
             let img = document.createElement('img');
             img.src = e.target.result;
-            img.classList.add('mx-auto', `h-${measure}`, `w-${measure}`, 'object-cover', 'text-gray-300', 'm-4', `rounded-${roundOption}`);
+            img.classList.add('mx-auto', `h-${measure}`, `w-${measure}`, 'object-cover', 'm-4', `rounded-${roundOption}`);
             imagePreview.append(img);
         };
         reader.readAsDataURL(input.files[0]);

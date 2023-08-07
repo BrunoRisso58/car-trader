@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Feature;
 use App\Repositories\Eloquent\CarRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,6 +31,7 @@ class CarController extends Controller
      */
     public function create()
     {
+        // $features = 
         return view('cars.add');
     }
 
@@ -47,9 +49,11 @@ class CarController extends Controller
      */
     public function show(string $id)
     {
+        $isByLoggedUser = $this->model->verifyUserCar($id);
         $car = $this->model->getOne($id);
         return view('cars.car', [
-            "car" => $car
+            "car" => $car,
+            "isByLoggedUser" => $isByLoggedUser
         ]);
     }
 
@@ -69,7 +73,17 @@ class CarController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        if ($this->model->verifyUserCar($id) == null) {
+            return redirect()->route('cars.index');
+        }
+
+        $car = $this->model->getOne($id);
+        $features = Feature::all();
+
+        return view('cars.edit', [
+            "car" => $car,
+            "features" => $features
+        ]);
     }
 
     /**
@@ -77,7 +91,7 @@ class CarController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        dd($request->all());
     }
 
     /**

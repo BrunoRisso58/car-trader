@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Repositories\Contracts\CarRepositoryInterface;
 use App\Models\Car;
+use App\Models\Feature;
 
 class CarRepository extends AbstractRepository implements CarRepositoryInterface {
 
@@ -49,6 +50,21 @@ class CarRepository extends AbstractRepository implements CarRepositoryInterface
     public function getCarsByLoggedUser() {
         $cars = $this->model->where('user_id', '=', Auth::user()->id)->get();
         return $cars;
+    }
+
+    /**
+     * Verifies if the given car ad is created by the logged user and returns the car or null
+     */
+    public function verifyUserCar($carId) {
+        $car = $this->model->where('id', $carId)
+                           ->where('user_id', Auth::id())->first();
+
+        return $car;
+    }
+
+    public function getAllFeatures() {
+        $features = Feature::all();
+        return $features;
     }
 
 }

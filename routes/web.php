@@ -33,12 +33,14 @@ Route::controller(UserController::class)->group(function () {
 });
 
 // cars
-Route::controller(CarController::class)->group(function () {
-    Route::get('/', 'index')->name('cars.index');
-    Route::get('cars/add', 'create')->middleware('auth')->name('car.create');
-    Route::post('cars/store', 'store')->middleware('auth')->name('car.store');
-    Route::get('car/{id}', 'show')->name('car.show');
-    Route::get('cars/my-list', 'myList')->middleware('auth')->name('cars.list');
+Route::controller(CarController::class)->middleware('auth')->group(function () {
+    Route::get('/', 'index')->withoutMiddleware('auth')->name('cars.index');
+    Route::get('cars/add', 'create')->name('car.create');
+    Route::post('cars/store', 'store')->name('car.store');
+    Route::get('car/edit/{id}', 'edit')->name('car.edit');
+    Route::put('car/update/{id}', 'update')->name('car.update');
+    Route::get('car/{id}', 'show')->withoutMiddleware('auth')->name('car.show');
+    Route::get('cars/my-list', 'myList')->name('cars.list');
 });
 
 // redirects to / when route does not exist

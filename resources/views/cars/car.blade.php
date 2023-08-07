@@ -11,6 +11,14 @@
 
   @include('components.navbar')
 
+  @if(isset($isByLoggedUser))
+  <div class="mx-auto max-w-7xl">
+    <a href="{{ route('car.edit', $car->id) }}">
+      <button class="text-right m-10 inline-block bg-indigo-600 py-2 px-4 rounded-lg text-white font-semibold">Edit</button>
+    </a>
+  </div>
+  @endif
+
   <div class="bg-white">
     <div class="pt-6">
   
@@ -26,8 +34,7 @@
         <div class="mt-4 lg:row-span-3 lg:mt-0">
           <h2 class="sr-only">Car information</h2>
           <p class="text-3xl tracking-tight text-gray-900">${{number_format($car->price)}}</p>
-  
-  
+
           <div class="mt-10">  
               <h3 class="text-sm font-medium text-gray-900">
                 Color: {{ strtolower($car->color) }}

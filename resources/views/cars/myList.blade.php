@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="{{asset('storage/car_favicon.png')}}">
     @vite('resources/css/app.css')
-    <title>Users</title>
+    <title>My list</title>
 </head>
 <body>
 
