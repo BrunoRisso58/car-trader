@@ -20,7 +20,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = $this->model->getAll();
+        $cars = $this->model->getAllAvailableCars();
         return view('cars.cars', [
             "cars" => $cars
         ]);
@@ -52,10 +52,13 @@ class CarController extends Controller
     public function show(string $id)
     {
         $isByLoggedUser = $this->model->verifyUserCar($id);
+        $isSold = $this->model->isCarSold($id);
+
         $car = $this->model->getOne($id);
         return view('cars.car', [
             "car" => $car,
-            "isByLoggedUser" => $isByLoggedUser
+            "isByLoggedUser" => $isByLoggedUser,
+            "isSold" => $isSold
         ]);
     }
 
@@ -75,9 +78,8 @@ class CarController extends Controller
      */
     public function edit(string $id)
     {
-        if ($this->model->verifyUserCar($id) == null) {
+        if ($this->model->verifyUserCar($id) == null)
             return redirect()->route('cars.index');
-        }
 
         $car = $this->model->getOne($id);
         $features = Feature::all();
@@ -86,6 +88,18 @@ class CarController extends Controller
             "car" => $car,
             "features" => $features
         ]);
+    }
+
+    /**
+     * Mark te specified car as sold
+     */
+    public function markAsSold(string $id) {
+        if ($this->model->verifyUserCar($id) == null || $this->model->isCarSold($id)) 
+            return redirect()->route('cars.index');
+
+        $this->model->markAsSold($id);
+
+        return redirect()->route('cars.index');
     }
 
     /**

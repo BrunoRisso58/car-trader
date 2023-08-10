@@ -11,11 +11,22 @@
 
   @include('components.navbar')
 
-  @if(isset($isByLoggedUser))
+  @if(isset($isByLoggedUser) && !$isSold)
   <div class="mx-auto max-w-7xl">
     <a href="{{ route('car.edit', $car->id) }}">
       <button class="text-right m-10 inline-block bg-indigo-600 py-2 px-4 rounded-lg text-white font-semibold">Edit</button>
     </a>
+    <form action="{{ route('car.sold', $car->id) }}" method="POST" class="inline">
+      @csrf
+      @method('put')
+      <button type="submit" class="text-right m-10 inline-block bg-green-200 py-2 px-4 rounded-lg text-gray-800 border-2 border-green-500 font-bold">Mark as sold</button>
+    </form>
+  </div>
+  @endif
+
+  @if($isSold)
+  <div class="mx-auto max-w-7xl bg-red-400 text-black font-semibold p-4">
+    This car is not available
   </div>
   @endif
 

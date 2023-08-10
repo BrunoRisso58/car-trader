@@ -27,10 +27,16 @@
                             <p class="text-sm mt-1 truncate leading-5 text-gray-500">{{ ucfirst($car->color) }}</p>
                         </div>
                     </div>
+                    @if($car->sold == 0)
                     <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
                         <p class="text-md leading-6 text-gray-900">${{ number_format($car->price) }}</p>
                         <p class="text-sm mt-1 leading-5 text-gray-500">{{ $car->year }}</time></p>
                     </div>
+                    @else
+                    <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+                        <p class="text-md leading-6 text-red-500 font-semibold">Sold</p>
+                    </div>
+                    @endif
                 </li>
             </a>
             @endforeach

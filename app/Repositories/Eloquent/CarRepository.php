@@ -16,6 +16,14 @@ class CarRepository extends AbstractRepository implements CarRepositoryInterface
 
     protected $model = Car::class;
 
+    /**
+     * Get all cars that are not sold yet
+     */
+    public function getAllAvailableCars() {
+        $cars = $this->model->where('sold', '=', 0)->get()->reverse();
+        return $cars;
+    }
+
     public function addCar(Request $request) {
         DB::beginTransaction();
 
@@ -48,8 +56,15 @@ class CarRepository extends AbstractRepository implements CarRepositoryInterface
         return $car;
     }
 
+    public function isCarSold($id) {
+        $car = $this->getOne($id);
+        $isSold = $car['sold'] == 1 ? true : false;
+
+        return $isSold;
+    }
+
     public function getCarsByLoggedUser() {
-        $cars = $this->model->where('user_id', '=', Auth::user()->id)->get();
+        $cars = $this->model->where('user_id', '=', Auth::user()->id)->get()->reverse();
         return $cars;
     }
 
@@ -63,9 +78,23 @@ class CarRepository extends AbstractRepository implements CarRepositoryInterface
         return $car;
     }
 
+    /**
+     * Get all features that a car can have
+     */
     public function getAllFeatures() {
         $features = Feature::all();
         return $features;
+    }
+
+    /**
+     * Mark a car as sold
+     */
+    public function markAsSold($id) {
+        $car = $this->model->findOrFail($id);
+        $car['sold'] = true;
+        $car->save();
+
+        return $car;
     }
 
 }

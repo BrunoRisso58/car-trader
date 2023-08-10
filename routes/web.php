@@ -41,6 +41,7 @@ Route::controller(CarController::class)->middleware('auth')->group(function () {
     Route::put('car/update/{id}', 'update')->name('car.update');
     Route::get('car/{id}', 'show')->withoutMiddleware('auth')->name('car.show');
     Route::get('cars/my-list', 'myList')->name('cars.list');
+    Route::put('cars/mark-as-sold/{id}', 'markAsSold')->name('car.sold');
 });
 
 // redirects to / when route does not exist
