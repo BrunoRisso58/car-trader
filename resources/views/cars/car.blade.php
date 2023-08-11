@@ -12,37 +12,20 @@
   @include('components.navbar')
 
   @if($isSold)
-  <div class="mx-auto max-w-7xl bg-red-400 text-black font-semibold p-4">
-    This car is not available
-  </div>
-  @endif
-
-  @if(isset($isByLoggedUser))
-  <div class="mx-auto max-w-7xl">
-    <form action="{{ route('car.sold', $car->id) }}" method="POST" class="inline">
-      @csrf
-      @method('put')
-      @if(!$isSold)
-      <input type="hidden" name="sell" id="sell" value="1">
-      <a href="{{ route('car.edit', $car->id) }}">
-        <div class="text-right m-10 inline-block bg-indigo-600 py-2 px-4 rounded-lg text-white font-semibold">Edit</div>
-      </a>
-      <button type="submit" class="text-right m-10 inline-block bg-green-200 py-2 px-4 rounded-lg text-gray-800 border-2 border-green-500 font-bold">Mark as sold</button>
-      @else
-      <input type="hidden" name="sell" id="sell" value="0">
-      <button type="submit" class="text-right m-10 inline-block bg-red-200 py-2 px-4 rounded-lg text-gray-800 border-2 border-red-500 font-bold">Mark as not sold</button>
-      @endif
-    </form>
+  <div class="bg-red-400 text-center">
+    <div class="mx-auto max-w-7xl text-black font-semibold p-4">
+      This car is not available
+    </div>
   </div>
   @endif
 
   <div class="bg-white">
     <div class="pt-6">
   
-      <img src="{{ isset($car->images[0]) ? asset('storage/'.$car->images[0]->path) : asset('storage/car_icon.png')}}" class="max-w-7xl max-h-96 mx-auto object-cover rounded" alt="Car image">
+      <img src="{{ isset($car->images[0]) ? asset('storage/'.$car->images[0]->path) : asset('storage/car_icon.png')}}" class="sm:max-w-7xl max-h-96 mx-auto object-cover rounded" alt="Car image">
   
       <!-- Product info -->
-      <div class="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
+      <div class="mx-auto max-w-2xl px-4 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-12 lg:pt-16">
         <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
           <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{{ $car->model }}</h1>
         </div>
@@ -52,7 +35,7 @@
           <h2 class="sr-only">Car information</h2>
           <p class="text-3xl tracking-tight text-gray-900">${{number_format($car->price)}}</p>
 
-          <div class="mt-10">  
+          <div class="mt-10">
               <h3 class="text-sm font-medium text-gray-900">
                 Color: {{ strtolower($car->color) }}
               </h3>
@@ -98,6 +81,27 @@
           </div>
         </div>
       </div>
+
+      @if(isset($isByLoggedUser))
+        <div class="mx-auto max-w-5xl">
+          <form action="{{ route('car.sold', $car->id) }}" method="POST" class="inline">
+            @csrf
+            @method('put')
+            <div class="flex justify-end mb-12 mx-20">
+              @if(!$isSold)
+                <input type="hidden" name="sell" id="sell" value="1">
+                <button type="submit" class="mr-10 inline-block bg-green-200 py-2 px-4 rounded-lg text-green-900 border-2 border-green-500 font-bold">Mark as sold</button>
+                <a href="{{ route('car.edit', $car->id) }}">
+                  <div class="text-right inline-block bg-indigo-600 py-2 px-4 rounded-lg text-white font-semibold">Edit</div>
+                </a>
+              @else
+                <input type="hidden" name="sell" id="sell" value="0">
+                <button type="submit" class="mr-10 inline-block bg-red-200 py-2 px-4 rounded-lg text-red-900 border-2 border-red-500 font-bold">Mark as not sold</button>
+              @endif
+            </div>
+          </form>
+        </div>
+      @endif
     </div>
   </div>
 

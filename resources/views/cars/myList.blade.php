@@ -23,7 +23,7 @@
                     <div class="flex gap-x-4">
                         <img class="h-20 w-20 object-cover flex-none rounded-full bg-gray-50" src="{{ isset($car->images[0]) ? asset('storage/'.$car->images[0]->path) : asset('storage/car_icon.png') }}" alt="User Profile Photo">
                         <div class="min-w-0 flex-auto">
-                            <p class="text-lg font-semibold leading-10 text-gray-900">{{ $car->model }}</p>
+                            <p class="text-lg font-semibold leading-10 {{ $car->sold == 0 ? "text-gray-900" : "text-red-500" }}">{{ $car->model }}</p>
                             <p class="text-sm mt-1 truncate leading-5 text-gray-500">{{ ucfirst($car->color) }}</p>
                         </div>
                     </div>
