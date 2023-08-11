@@ -93,13 +93,13 @@ class CarController extends Controller
     /**
      * Mark te specified car as sold
      */
-    public function markAsSold(string $id) {
-        if ($this->model->verifyUserCar($id) == null || $this->model->isCarSold($id)) 
+    public function markAsSold(string $id, Request $request) {
+        if ($this->model->verifyUserCar($id) == null) 
             return redirect()->route('cars.index');
 
-        $this->model->markAsSold($id);
+        $this->model->markAsSold($id, $request);
 
-        return redirect()->route('cars.index');
+        return redirect()->route('cars.list');
     }
 
     /**
