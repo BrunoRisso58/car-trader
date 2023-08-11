@@ -87,11 +87,11 @@ class CarRepository extends AbstractRepository implements CarRepositoryInterface
     }
 
     /**
-     * Mark a car as sold
+     * Mark a car as sold or as not sold
      */
-    public function markAsSold($id) {
+    public function markAsSold($id, Request $request) {
         $car = $this->model->findOrFail($id);
-        $car['sold'] = true;
+        $car['sold'] = $request->sell;
         $car->save();
 
         return $car;
