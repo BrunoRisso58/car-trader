@@ -55,6 +55,7 @@ class CarController extends Controller
         $isSold = $this->model->isCarSold($id);
 
         $car = $this->model->getOne($id);
+        $car['features'] = explode(',', $car['features']);
         return view('cars.car', [
             "car" => $car,
             "isByLoggedUser" => $isByLoggedUser,
@@ -82,6 +83,7 @@ class CarController extends Controller
             return redirect()->route('cars.index');
 
         $car = $this->model->getOne($id);
+        $car['features'] = explode(',', $car['features']);
         $features = Feature::all();
 
         return view('cars.edit', [
@@ -94,7 +96,7 @@ class CarController extends Controller
      * Mark te specified car as sold
      */
     public function markAsSold(string $id, Request $request) {
-        if ($this->model->verifyUserCar($id) == null) 
+        if ($this->model->verifyUserCar($id) == null)
             return redirect()->route('cars.index');
 
         $this->model->markAsSold($id, $request);
@@ -105,9 +107,10 @@ class CarController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(string $id, Request $request)
     {
-        dd($request->all());
+        $this->model->updateCar($id, $request->all());
+        return redirect()->route('car.show', $id);
     }
 
     /**

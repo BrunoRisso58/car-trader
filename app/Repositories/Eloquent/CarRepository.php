@@ -49,13 +49,6 @@ class CarRepository extends AbstractRepository implements CarRepositoryInterface
         }
     }
 
-    public function getOne($id) {
-        $car = $this->model->findOrFail($id);
-        $car['features'] = explode(',', $car['features']);
-
-        return $car;
-    }
-
     public function isCarSold($id) {
         $car = $this->getOne($id);
         $isSold = $car['sold'] == 1 ? true : false;
@@ -95,6 +88,35 @@ class CarRepository extends AbstractRepository implements CarRepositoryInterface
         $car->save();
 
         return $car;
+    }
+
+    /**
+     * Update a car
+     */
+    public function updateCar(string $id, array $data) {
+
+        DB::beginTransaction();
+
+        try {
+            $car = $this->getOne($id);
+            $data['price'] = str_replace(',', '', $data['price']);
+            $data['year'] = substr($data['model'], 0, 4);
+
+            $car->fill($data);
+            $car->save();
+
+            if (isset($data['image'])) {
+                $path = $data['image']->store(Str::slug($data['model']) . '-' . Str::slug(now()));
+                $car->images()->update([
+                    'path' => $path
+                ]);
+            }
+
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw new Exception($e->getMessage());
+        }
     }
 
 }
