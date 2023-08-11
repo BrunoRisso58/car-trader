@@ -24,7 +24,7 @@
             <a href="{{route("user.show", $user->id)}}">
                 <li class="flex justify-between gap-x-6 py-5">
                     <div class="flex gap-x-4">
-                        <img class="h-20 w-20 object-cover flex-none rounded-full bg-gray-50" src="{{asset('storage/'.$user->image->path)}}" alt="User Profile Photo">
+                        <img class="h-20 w-20 object-cover flex-none rounded-full bg-gray-50" src="{{ isset($user->image) ? asset('storage/'.$user->image) : asset('storage/user_icon.png') }}" alt="User Profile Photo">
                         <div class="min-w-0 flex-auto">
                             <p class="text-lg font-semibold leading-10 text-gray-900">{{$user->name}}</p>
                             <p class="mt-1 truncate text-sm leading-5 text-gray-500">{{$user->email}}</p>
