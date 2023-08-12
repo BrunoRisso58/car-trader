@@ -20,7 +20,7 @@
 
     <div class="flex m-20 justify-center h-screen">
         <div class="flex items-center flex-col text-center">
-            <img class="h-44 w-44 object-cover flex-none rounded-full bg-gray-50" src="{{asset('storage/'.$user->image->path)}}" alt="Profile picture">
+            <img class="h-44 w-44 object-cover flex-none rounded-full bg-gray-50" src="{{isset($user->image) ? asset('storage/'.$user->image->path) : asset('storage/user_icon.png')}}" alt="Profile picture">
             <h1 class="text-2xl font-bold p-5">{{$user->name}}</h1>
             <p class="text-lg text-gray-600">{{$user->email}}</p>
             <p class="text-lg text-gray-600">{{$user->cellphone}}</p>
