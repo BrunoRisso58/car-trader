@@ -1,5 +1,7 @@
 <?php
 
+dd(__DIR__);
+
 return [
 
     /*
@@ -42,6 +44,13 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
             'throw' => false,
+        ],
+
+        'car.brunorisso.com' => [
+            'driver' => 'local',
+            'root' => __DIR__.'/../../cartrader.brunorisso.com/storage',
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
         ],
 
         's3' => [
