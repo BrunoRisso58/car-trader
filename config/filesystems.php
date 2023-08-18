@@ -1,7 +1,5 @@
 <?php
 
-dd(__DIR__);
-
 return [
 
     /*
