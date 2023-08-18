@@ -44,7 +44,7 @@ return [
             'throw' => false,
         ],
 
-        'car.brunorisso.com' => [
+        'car_brunorisso' => [
             'driver' => 'local',
             'root' => __DIR__.'/../../cartrader.brunorisso.com/storage',
             'url' => env('APP_URL').'/storage',
