@@ -7,7 +7,7 @@
     @vite('resources/css/app.css')
     <title>Cars</title>
 </head>
-<body>
+<body class="flex flex-col min-h-screen">
 
   @include('components.navbar')
 

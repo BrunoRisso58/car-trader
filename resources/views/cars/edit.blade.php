@@ -7,7 +7,7 @@
     @vite('resources/css/app.css')
     <title>List a car!</title>
 </head>
-<body>
+<body class="flex flex-col min-h-screen">
 
     @include('components.navbar')
 
@@ -16,7 +16,7 @@
         @method('put')
 
         <div class="space-y-12 mx-auto max-w-7xl">
-        
+
             <div class="m-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div class="sm:col-span-3 inline-block">
                     <label for="brand" class="block text-sm font-medium leading-6 text-gray-900">Brand *</label>
@@ -50,16 +50,16 @@
                         </div>
                         <input type="text" name="price" id="price" value="{{$car->price}}" oninput="validatePrice(this)" class="block w-2/3 rounded-md border-0 px-8 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" required>                    </div>
                 </div>
-                
+
                 <div class="col-span-full">
                     <label for="features" class="block text-sm font-medium leading-6 text-gray-900">Features</label>
                     <div class="mt-2 grid grid-cols-3">
                         @foreach($features as $feature)
                         <div>
-                            <input id="{{$feature->name}}" 
-                                   name="{{$feature->name}}" 
-                                   value="{{$feature->value}}" 
-                                   type="checkbox" 
+                            <input id="{{$feature->name}}"
+                                   name="{{$feature->name}}"
+                                   value="{{$feature->value}}"
+                                   type="checkbox"
                                    class="m-4"
                                    @if(in_array($feature->value, $car->features))
                                     checked
@@ -70,7 +70,7 @@
                         @endforeach
                     </div>
                 </div>
-        
+
                 <div class="col-span-full">
                     <label for="description" class="block text-sm font-medium leading-6 text-gray-900">Description</label>
                     <div class="mt-2">
@@ -78,7 +78,7 @@
                     </div>
                     <p class="mt-3 text-sm leading-6 text-gray-600">Write a few sentences about the car.</p>
                 </div>
-                
+
                 <div class="col-span-full">
                     <label for="cover-photo" class="block text-sm font-medium leading-6 text-gray-900">Cover photo *</label>
                     <div id="image-preview">
@@ -88,7 +88,7 @@
                         <input id="image" name="image" type="file" accept=".jpeg, .jpg, .png" class="text-center" onchange="previewImage(event, 32, 'md')">
                     </div>
                     <p class="mt-3 text-sm leading-6 text-gray-600" id="photo-preview-text">This is the first photo that will appear.</p>
-                </div> 
+                </div>
 
                 <input type="hidden" name="features" id="features" value="">
             </div>

@@ -36,7 +36,9 @@
         </ul>
     </div>
 
+    <div class="flex flex-col min-h-screen">
     @include('components.footer')
+    </div>
 
 </body>
 </html>
